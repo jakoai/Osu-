@@ -23,8 +23,8 @@ def pygame_event():
 				if math.sqrt(pow(inactive_circles[i]["pos"][0]-pos[0], 2) + pow(inactive_circles[i]["pos"][1]-pos[1], 2)) < circle_radius:
 					mini = []
 					for j in inactive_circles:
-						mini.append(j["text"])
-					if inactive_circles[i]["text"] == min(mini):
+						mini.append(j["n"])
+					if inactive_circles[i]["n"] == min(mini):
 						del circles[i]
 						if inactive_circles[i]["radius"]-circle_radius < 5:
 							print("perfect")
@@ -48,7 +48,7 @@ circles = [{"time":1},
 for i in range(len(circles)):
 	circles[i]["pos"] = [randint(circle_radius, resolution[1]-circle_radius), randint(circle_radius, resolution[1]-circle_radius)]
 	circles[i]["radius"] = 75
-	circles[i]["text"] = i+1
+	circles[i]["n"] = i+1
 
 start_time = time.time()
 inactive_circles = []
@@ -57,13 +57,20 @@ while True:
 	inactive_circles = []
 	screen.fill((0, 0, 0))
 	screen.blit(bg,(0,0))
+
 	for i in range(len(circles)):
-		if circles[i]["time"] < time.time() - start_time and circles[i]["radius"] > circle_radius:
-			circles[i]["radius"] -= 1
-			inactive_circles.append(circles[i])
-			pygame.draw.circle(screen, (0, 255, 0), circles[i]["pos"], circle_radius, circle_radius)
-			pygame.draw.circle(screen, (255, 255, 255), circles[i]["pos"], circles[i]["radius"], 2)
-			screen.blit(font.render(str(circles[i]["text"]), False, (0, 0, 255)), circles[i]["pos"])
+		if circles[i]["time"] < time.time() - start_time:
+			if circles[i]["radius"] == circle_radius:
+				print("missed")
+			if circles[i]["radius"] > circle_radius:
+				circles[i]["radius"] -= 1
+				inactive_circles.append(circles[i])
+				pygame.draw.circle(screen, (0, 255, 0), circles[i]["pos"], circle_radius, circle_radius)
+				pygame.draw.circle(screen, (255, 255, 255), circles[i]["pos"], circles[i]["radius"], 2)
+				screen.blit(font.render(str(circles[i]["n"]), False, (0, 0, 255)), circles[i]["pos"])
+			elif circles[i]["radius"] >= circle_radius:
+				circles[i]["radius"] -= 1
+
 
 	pygame.display.update()
 	time.sleep(0.05)
