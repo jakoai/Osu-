@@ -61,6 +61,7 @@ while True:
 	for i in range(len(circles)):
 		if circles[i]["time"] < time.time() - start_time:
 			if circles[i]["radius"] == circle_radius:
+				circles[i]["radius"] -= 1
 				print("missed")
 			if circles[i]["radius"] > circle_radius:
 				circles[i]["radius"] -= 1
@@ -68,8 +69,6 @@ while True:
 				pygame.draw.circle(screen, (0, 255, 0), circles[i]["pos"], circle_radius, circle_radius)
 				pygame.draw.circle(screen, (255, 255, 255), circles[i]["pos"], circles[i]["radius"], 2)
 				screen.blit(font.render(str(circles[i]["n"]), False, (0, 0, 255)), circles[i]["pos"])
-			elif circles[i]["radius"] >= circle_radius:
-				circles[i]["radius"] -= 1
 
 
 	pygame.display.update()
