@@ -15,10 +15,55 @@ pygame.mixer.music.play()
 
 hit_text = ""
 
-circles = [{"time":1}, 
-			{"time":1.2}, 
-			{"time":1.5}, 
-			{"time":3}]
+circles = [{"time": 0},
+			{"time": 6.5},
+			{"time": 6.7},
+			{"time": 13.3},
+			{"time": 17},
+		   	{"time": 21},
+			{"time": 24.3},
+			{"time": 27.85},
+			{"time": 29.5},
+			{"time": 31.4 },
+			{"time": 33.3},
+			{"time": 35.1},
+			{"time": 36.8},
+			{"time": 39},
+			{"time": 40},
+			{"time": 41},
+			{"time": 42},
+			{"time": 45},
+			{"time": 48},
+			{"time": 50},
+			{"time": 53.5},
+			{"time": 57},
+			{"time": 58},
+			{"time": 58.7},
+			{"time": 60},
+			{"time": 61},
+			{"time": 62},
+			{"time": 63},
+			{"time": 64},
+			{"time": 65},
+			{"time": 66},
+			{"time": 67.5},
+		   	{"time": 69},
+		 	{"time": 70},
+		   	{"time": 71},
+		   	{"time": 71.5},
+		   	{"time": 72},
+		   	{"time": 72.8},
+		   	{"time": 73.6},
+		   	{"time": 74.4},
+		   	{"time": 75.2},
+		   	{"time": 76},
+		   	{"time": 76.8},
+			{"time": 77.6},
+			{"time": 78.4},
+		  	{"time": 79.2},
+			{"time": 80},
+			{"time": 80.5}]
+
 
 score_bar = 900
 
@@ -61,6 +106,7 @@ for i in range(len(circles)):
 
 start_time = time.time()
 inactive_circles = []
+
 while True:
 	pygame_event()
 	inactive_circles = []
