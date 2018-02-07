@@ -126,21 +126,22 @@ while True:
 		screen.fill((255, 192, 203), pygame.Rect(55, 755, score_bar, 25))
 		render = pygame.font.SysFont('Comic Sans MS', 100).render(hit_text, False, (0, 255, 255))
 		screen.blit(render, (resolution[0]/2-render.get_width()/2, resolution[1]/2-render.get_height()/2))
-	score_bar -= 1
 
-	for i in range(len(circles)):
-		if circles[i]["time"] < time.time() - start_time:
-			if circles[i]["radius"] == circle_radius:
-				circles[i]["radius"] -= 1/circles[i]["duration"]
-				hit_text = ""
-				score_bar -= 30
-			if circles[i]["radius"] > circle_radius:
-				circles[i]["radius"] -= 1/circles[i]["duration"]
-				inactive_circles.append(circles[i]["index"])
-				pygame.draw.circle(screen, (0, 255, 0), circles[i]["pos"], circle_radius, 0)
-				pygame.draw.circle(screen, (255, 255, 255), circles[i]["pos"], int(circles[i]["radius"]), 2)
-				render = pygame.font.SysFont('Comic Sans MS', 30).render(str(circles[i]["index"]), False, (0, 0, 255))
-				screen.blit(render, (circles[i]["pos"][0]-render.get_width()/2, circles[i]["pos"][1]-render.get_height()/2))
+		for i in range(len(circles)):
+			if circles[i]["time"] < time.time() - start_time:
+				if circles[i]["radius"] == circle_radius:
+					circles[i]["radius"] -= 1/circles[i]["duration"]
+					hit_text = ""
+					score_bar -= 30
+				if circles[i]["radius"] > circle_radius:
+					circles[i]["radius"] -= 1/circles[i]["duration"]
+					inactive_circles.append(circles[i]["index"])
+					pygame.draw.circle(screen, (0, 255, 0), circles[i]["pos"], circle_radius, 0)
+					pygame.draw.circle(screen, (255, 255, 255), circles[i]["pos"], int(circles[i]["radius"]), 2)
+					render = pygame.font.SysFont('Comic Sans MS', 30).render(str(circles[i]["index"]), False, (0, 0, 255))
+					screen.blit(render, (circles[i]["pos"][0]-render.get_width()/2, circles[i]["pos"][1]-render.get_height()/2))
+
+	score_bar -= 1
 
 	pygame.display.update()
 	time.sleep(0.01)
